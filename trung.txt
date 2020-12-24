@@ -1,0 +1,46 @@
+import com.mysql.jdbc.*;
+//import com.mysql.jdbc.Statement;
+
+import javax.swing.*;
+import java.awt.*;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+
+public class SQL {
+    private String header[] = {""};
+    public static void main(String[] args) {
+        Connection conn = null;
+        Statement st = null;
+        ResultSet rs = null;
+        try{
+            String dbURL = "http://localhost/phpmyadmin/de2";
+            String username = "ngo duc trung";
+            String password = "";
+            //tạo kết nối
+            conn = (Connection) DriverManager.getConnection(dbURL, username, password);
+            if (conn != null){
+                System.out.println("Kết nối thành công");
+            }
+            // Câu lệnh xem dữ liệu
+            String sql = "select * from tên_bảng";
+            // Tạo đối tượng thực thi câu lệnh Select
+            st = (Statement) conn.createStatement();
+            // Thực thi
+            rs = st.executeQuery(sql);
+
+            // Nếu không có dữ liệu trong bảng
+//            if (rs.isBeforeFirst() == false){
+//                JOptionPane.showMessageDialog(this, "Bảng không có dữ liệu!");
+//                return;
+//            }
+            while (rs.next()){
+                // Sử dụng phương thức rs.getXX("Tên cột trong bảng")
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+}
